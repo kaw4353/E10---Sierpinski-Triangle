@@ -23,8 +23,8 @@ class ReEngDLL GroupClass
 	bool m_bGlobalized = false;	//Global coordinates flag
 	bool m_bModified = false;	//Modified flag
 
-	int m_nShapes = 0;		//number of shapes in this group
 	int m_nHP = 0;			//Hit Points of this group
+	uint m_nShapes = 0;		//number of shapes in this group
 	uint m_nFrames = 0;		//Frames in this group
 	
 	SystemSingleton* m_pSystem = nullptr;	//System pointer
@@ -61,7 +61,7 @@ public:
 	void SetName(String a_sName);
 	__declspec(property(get = GetName, put = SetName)) String Name; //Name Property
 
-	MeshClass* GetMesh(int a_nIndex);//Returns the shape in the given index
+	MeshClass* GetMesh(uint a_nIndex);//Returns the shape in the given index
 
 	void RemoveEmptyMeshes(void);
 
@@ -84,6 +84,7 @@ public:
 
 	void SetMaterial(String a_sMaterialName);
 
+	vector3 GetPivot(void);
 	void SetPivot(vector3 a_v3Pivot);
 
 	void SetParent(GroupClass* a_pParent);
@@ -143,6 +144,7 @@ public:
 
 	BoundingObjectClass* GetBoundingObject(void);
 	void CompileBoundingObject(void);
+	void SetBoundingObject(BoundingObjectClass* a_pBO);
 
 	bool IsColliding( vector3 a_v3RayOrigin, vector3 a_v3RayDirection, float& a_fDistance );
 

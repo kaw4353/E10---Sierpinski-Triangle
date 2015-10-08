@@ -125,6 +125,9 @@ public:
 
 	/* Asks the model the index of the provided state, -1 if not found */
 	int IdentifyState(StateClass* a_pState);
+
+	/* Asks the model the index of the provided state, -1 if not found */
+	int IdentifyState(String a_sName);
 	
 	/*
 	Asks the model for the Bounding Object of a particular frame of animation
@@ -133,8 +136,11 @@ public:
 	*/
 	BoundingObjectClass* GetBoundingObject(int a_nFrame = -1);
 
-	/* Loads a model from an obj file*/
+	/* Loads a model from an OBJ file*/
 	REERRORS LoadOBJ(String a_sFileName, bool a_bAbsoluteRoute = false);
+
+	/* Loads a model from an ATO file*/
+	REERRORS LoadATO(String a_sFileName, bool a_bAbsoluteRoute = false);
 
 	/* Saves a loaded model as an ATO file do not add the extension unless absolute route*/
 	REERRORS SaveATO(String a_sFileName, bool a_bAbsoluteRoute);
@@ -158,6 +164,8 @@ private:
 
 	/* Asks the model for a state by name */
 	StateClass* GetState(String a_sName);
+
+	vector3 RoundVector(vector3 a_v3Vector, float fMargin = 0.0001f);
 
 };
 

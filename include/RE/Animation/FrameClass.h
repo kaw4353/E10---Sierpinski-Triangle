@@ -14,10 +14,10 @@ class ReEngDLL FrameClass
 {
 	bool m_bKeyframe = true;
 	bool m_bVisible = true;
-	vector3 m_v3Translation;
-	vector3 m_v3Rotation;
-	vector3 m_v3Scale;
-	matrix4 m_m4Transformation;
+	vector3 m_v3Translation = vector3(0.0f);
+	vector3 m_v3Rotation = vector3(0.0f);
+	vector3 m_v3Scale = vector3(1.0f);
+	matrix4 m_m4Transformation = matrix4(1.0f);
 public:
 	
 	//Constructor

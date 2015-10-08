@@ -15,6 +15,10 @@ Date: 2015/06
 #include <assert.h>
 #include <math.h>
 #include <vector>
+#include <locale>
+#include <algorithm>
+#include <fstream>
+#include <sstream>
 
 // Include GLM
 #include <glm\glm.hpp>

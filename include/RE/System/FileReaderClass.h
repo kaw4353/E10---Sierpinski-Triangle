@@ -14,9 +14,11 @@ class ReEngDLL FileReaderClass
 {
 	SystemSingleton* m_pSystem = nullptr; //System pointer
 	FILE* m_pFile; //File pointer
+	std::ifstream m_oStream;
 
 public:
 	String m_sLine = ""; //Line of file
+	String m_sFirstWord = "";
 
 	/* constructor */
 	FileReaderClass(void);
@@ -54,13 +56,23 @@ public:
 	/* writes on the same line of the file and saves it in the char array */
 	REERRORS Write(const char * _Format, ...);
 
+	/* Removes all tabs from the string (it makes regular spaces)*/
+	REERRORS RemoveTabs(String* a_sInput);
+
 	/* reads a line of the file and saves it in the string */
 	REERRORS ReadNextLine(bool a_bSkipComments = true);
 	/* 
 	Removes the blank spaces of the line
 		Modified by AndrewWilkinson88@gmail.com
 	*/
-	REERRORS RemoveBlanks(char** a_szInput) const; 
+	REERRORS RemoveBlanks(char** a_szInput);
+
+	/*Removes the blank spaces of the line and returns a new copy*/
+	REERRORS RemoveBlanks(char* a_szInput);
+
+	/*Removes the blank spaces of the line and returns a new copy*/
+	REERRORS RemoveBlanks(String* a_sInput);
+
 	/* Gets the first word of the line */
 	String GetFirstWord(bool a_bToUpper = false);
 
@@ -70,13 +82,19 @@ public:
 	char* IndicateFileNameOnExplorer(LPWSTR mSuggested = NULL, LPCWSTR mFilter = L"Plain Text Files (*.txt)\0*.txt\0 All Files (*.*)\0*.*\0", LPCWSTR mDefaultExt = L"txt") const;
 
 	/*Gets the filename with extention from the name */
-	String GetFileNameAndExtension(String a_sFileName);
+	static String GetFileNameAndExtension(String a_sFileName);
 
 	/*Gets the filename from the name */
-	String GetFileName(String a_sFileName);
+	static String GetFileName(String a_sFileName);
+
+	/*Gets the extension from the filename*/
+	static String GetExtension(String a_sFileName);
 
 	/* Gets the absolute route from a file name */
-	String GetAbsoluteRoute(String a_sFileName);
+	static String GetAbsoluteRoute(String a_sFileName);
+
+	/* Returns the string in uppercase */
+	static String ToUpper(String a_sInput);
 
 private:
 	/* Initializates the variables of the object*/
