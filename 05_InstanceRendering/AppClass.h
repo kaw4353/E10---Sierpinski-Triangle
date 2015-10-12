@@ -20,7 +20,7 @@ public:
 
 	MyMesh* m_pMesh = nullptr;
 	float* m_fMatrixArray = nullptr;
-	int m_nObjects = 200;
+	int m_nObjects = 27;
 
 	/* Constructor */
 	AppClass(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow) : super(hInstance, lpCmdLine, nCmdShow) {}

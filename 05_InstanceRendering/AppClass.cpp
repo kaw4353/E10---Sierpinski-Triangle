@@ -12,7 +12,7 @@ void AppClass::InitVariables(void)
 
 	m_pMesh->AddVertexPosition(vector3(0.0f, 0.0f, 0.0f));
 	m_pMesh->AddVertexPosition(vector3(5.0f, 0.0f, 0.0f));
-	m_pMesh->AddVertexPosition(vector3(0.0f, 5.0f, 0.0f));
+	m_pMesh->AddVertexPosition(vector3(2.5f, 5.0f, 0.0f));
 
 	m_pMesh->AddVertexColor(REGREEN);
 	m_pMesh->AddVertexColor(RERED);
@@ -23,11 +23,19 @@ void AppClass::InitVariables(void)
 	m_fMatrixArray = new float[m_nObjects * 16];
 	for (int nObject = 0; nObject < m_nObjects; nObject++)
 	{
-		const float* m4MVP = glm::value_ptr(
-			glm::translate(vector3(0.01f * -nObject, 0.0f, 1.0f * -nObject)) *
-			glm::rotate(REIDENTITY, nObject * 5.0f, REAXISZ)
+		const float* m4MVP1 = glm::value_ptr(
+			glm::scale(
+			glm::translate(vector3(5.0f, 0.0f, 0.0f)),
+			glm::vec3(0.5f, 0.5f, 0.5f))
 			);
-		memcpy(&m_fMatrixArray[nObject * 16], m4MVP, 16 * sizeof(float));
+		memcpy(&m_fMatrixArray[nObject * 16], m4MVP1, 16 * sizeof(float));
+
+		const float* m4MVP2 = glm::value_ptr(
+			glm::scale(
+			glm::translate(vector3(2.5f, 5.0f, 0.0f)),
+			glm::vec3(0.5f, 0.5f, 0.5f))
+			);
+		memcpy(&m_fMatrixArray[nObject * 16], m4MVP2, 16 * sizeof(float));
 	}
 
 }
