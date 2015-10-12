@@ -112,6 +112,7 @@ enum REERRORS
 	ERROR_FILE = 7,
 	DONE = 8,
 	RUNNING = 9,
+	ERROR_NO_EXTENSION = 10,
 };
 enum REAXIS
 {

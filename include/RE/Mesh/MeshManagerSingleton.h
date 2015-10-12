@@ -27,6 +27,11 @@ public:
 	/* Destroys the singleton */
 	static void ReleaseInstance(void);
 
+	/* Saves the specified model file, needs to specify the file extension (ATO or BTO) */
+	REERRORS SaveModel(	String a_sFileName,
+						String a_sInstanceName,
+						bool a_bAbsoluteRoute = false);
+
 	/* Loads the specified model file */
 	REERRORS LoadModel (	String a_sFileName,
 							String a_sInstanceName,

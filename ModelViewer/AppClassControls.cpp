@@ -101,7 +101,7 @@ void AppClass::ProcessKeyboard(void)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F5))
 	{
 		FileReaderClass pFile;
-		String sFileName = pFile.RetriveFileNameFromExplorer(L"OBJ Files (*.obj)\0*.obj\0WRL Files (*.wrl)\0*.wrl\0", L"obj");
+		String sFileName = pFile.RetriveFileNameFromExplorer(L"OBJ Files (*.obj)\0*.obj\0ATO Files (*.ato)\0*.ato\0BTO Files (*.bto)\0*.bto\0", L"obj");
 		if (sFileName != "")
 		{
 			bool bThreaded = m_pSystem->GetThreaded();
@@ -126,9 +126,26 @@ void AppClass::ProcessKeyboard(void)
 			m_pSystem->SetThreaded(bThreaded);
 		}
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F6))
+	{
+		if (m_sSelectedObject != "")
+		{
+			bool bThreaded = m_pSystem->GetThreaded();
+			m_pSystem->SetThreaded(false);
+			FileReaderClass pFile;
+			String sFileName = pFile.IndicateFileNameOnExplorer(L"BTO Files (*.bto)\0*.bto\0ATO Files (*.ato)\0*.ato\0All Files (*.*)\0*.*\0", L"bto");
+			if (sFileName != "")
+			{
+				m_pMeshMngr->SaveModel(sFileName, m_sSelectedObject, true);
+			}
+
+			m_pSystem->SetThreaded(bThreaded);
+		}
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::F2))
 	{
 		m_pMeshMngr->m_pModelMngr->DeleteInstance(m_sSelectedObject);
+		m_sSelectedObject = "";
 	}
 #pragma endregion
 

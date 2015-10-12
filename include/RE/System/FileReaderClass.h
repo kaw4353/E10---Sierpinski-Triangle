@@ -14,7 +14,8 @@ class ReEngDLL FileReaderClass
 {
 	SystemSingleton* m_pSystem = nullptr; //System pointer
 	FILE* m_pFile; //File pointer
-	std::ifstream m_oStream;
+	std::ifstream m_iStream;
+	std::ofstream m_oStream;
 
 public:
 	String m_sLine = ""; //Line of file
@@ -29,7 +30,7 @@ public:
 	/* Destructor */
 	~FileReaderClass(void);
 	
-	/* Dealocate object from memory */
+	/* Deallocate object from memory */
 	void Release(void);
 
 	/* Rewinds the file */
@@ -40,6 +41,12 @@ public:
 
 	/* Saves a file with the specified name and location */
 	REERRORS SaveFile(String a_sFileName);
+
+	/* Saves a file in binary mode */
+	REERRORS SaveBinaryFile(String a_sFileName);
+
+	/* Reads Binary Files */
+	REERRORS ReadBinaryFile(String a_sFileName);
 
 	/* closes the file */
 	void CloseFile(void);
@@ -55,6 +62,23 @@ public:
 
 	/* writes on the same line of the file and saves it in the char array */
 	REERRORS Write(const char * _Format, ...);
+
+	void WriteInt(int input);
+
+	void WriteFloat(float input);
+
+	void WriteBool(bool input);
+
+	void WriteString(String input);
+
+
+	int ReadInt(void);
+
+	float ReadFloat(void);
+
+	bool ReadBool(void);
+
+	String ReadString(void);
 
 	/* Removes all tabs from the string (it makes regular spaces)*/
 	REERRORS RemoveTabs(String* a_sInput);
@@ -78,10 +102,11 @@ public:
 
 	/*Gets a file name from a explorer window*/
 	String RetriveFileNameFromExplorer(LPCWSTR mFilter = L"Plain Text Files (*.txt)\0*.txt\0 All Files (*.*)\0*.*\0", LPCWSTR mDefaultExt = L"txt") const;
-	/*Tells a file name from explorer window*/
-	char* IndicateFileNameOnExplorer(LPWSTR mSuggested = NULL, LPCWSTR mFilter = L"Plain Text Files (*.txt)\0*.txt\0 All Files (*.*)\0*.*\0", LPCWSTR mDefaultExt = L"txt") const;
 
-	/*Gets the filename with extention from the name */
+	/*Tells a file name from explorer window*/
+	String IndicateFileNameOnExplorer(LPCWSTR mFilter = L"Plain Text Files (*.txt)\0*.txt\0 All Files (*.*)\0*.*\0", LPCWSTR mDefaultExt = L"txt") const;
+
+	/*Gets the filename with extension from the name */
 	static String GetFileNameAndExtension(String a_sFileName);
 
 	/*Gets the filename from the name */

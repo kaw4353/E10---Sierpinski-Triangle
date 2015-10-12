@@ -113,5 +113,6 @@ void main()
 	MaterialSpecularColor = MaterialSpecularColor * Specular;
 
 	Fragment = MaterialAmbientColor + MaterialSpecularColor + MaterialDiffuseColor;
+	
 	return;
 }

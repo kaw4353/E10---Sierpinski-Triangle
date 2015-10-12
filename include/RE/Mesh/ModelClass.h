@@ -142,8 +142,14 @@ public:
 	/* Loads a model from an ATO file*/
 	REERRORS LoadATO(String a_sFileName, bool a_bAbsoluteRoute = false);
 
+	/* Loads a model from an ATO file*/
+	REERRORS LoadBTO(String a_sFileName, bool a_bAbsoluteRoute = false);
+
 	/* Saves a loaded model as an ATO file do not add the extension unless absolute route*/
 	REERRORS SaveATO(String a_sFileName, bool a_bAbsoluteRoute);
+
+	/* Saves a loaded model as an BTO file do not add the extension unless absolute route*/
+	REERRORS SaveBTO(String a_sFileName, bool a_bAbsoluteRoute);
 
 private:
 	/* Initializates the model object */
